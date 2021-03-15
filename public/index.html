@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ひぐらし2設定判別ツールv0.7</title>
+  <link rel="stylesheet" href="css/style.css">
+  <h4>ひぐらしの<span class="red">な</span>く頃に</h4>
+  <h2>祭</h2>
+  <h4 class="hidaridume">2 計算v0.7</h4>
+</head>
+
+<body>
+  <div class="wakeru">
+    <div>カケラ紡ぎ(回想)</div>
+    <h6>カケラ回想or有利区間終了時に合計してリセット</h6>
+    <!-- カケラ紡ぎG数ボタン -->
+    <button id="kakera_g1" class="btn_rt noselect">G数+</button>
+    <!-- カケラ紡ぎのG数入力欄 -->
+    <input type="number" id="kakera_g" class="suuzi" value="0" min="0">
+    <!-- カケラ紡ぎ追加ボタン -->
+    <button id="kakera_tuika" class="btn_rt noselect">合計G</button>
+    <!-- カケラ紡ぎall -->
+    <input type="number" id="kakera_all" class="suuzi" value="0" min="0">
+    <div>共通ベル</div>
+    <!-- カケラ中のベルボタン -->
+    <button id="kakera_b1" class="btn_bell noselect">ベル+</button>
+    <!-- 共通ベル入力欄 -->
+    <input type="number" id="kakera_bell" class="suuzi" value="0" min="0">
+  </div>
+  <div class="wakeru">
+    <div>RT</div>
+    <div>
+      <!-- RT中の入力欄 -->
+      <input type="number" id="rt_g" class="suuzi" value="0" min="0">
+    </div>
+    <button id="rt_50" class="btn_rt noselect">+50G</button>
+    <button id="rt_90" class="btn_rt noselect">+90G</button>
+    <button id="rt_30" class="btn_rt noselect">+30G</button>
+    <div>共通ベル</div>
+    <button id="rt_b1" class="btn_bell noselect">ベル+</button>
+    <input type="number" id="rt_bell" class="suuzi" value="0" min="0">
+    <!-- <div>ハズレ</div> -->
+    <!-- <div><input type="number" class="suuzi"><button id="rt_hazure" class="hazure">ハズレ+</button></div> -->
+  </div>
+  <div class="wakeru">
+    <button id="result" class="noselect">計算</button>
+    <div class="nowrap">合計(ベル/G数):<div id="result_g"></div>
+    </div>
+    <div class="nowrap">ベル確率:<div id="result_b"></div>
+    </div>
+    <!-- <div>ハズレ確率:</div><div id="result_H"></div> -->
+  </div>
+
+  <div class="wakeru">設定別共通ベル確率
+    <div class="gray">設定1:1/18.70<div id="r_1" class="kitaiti"></div>
+    </div>
+    <div class="gray">設定2:1/17.88<div id="r_2" class="kitaiti"></div>
+    </div>
+    <div class="gray">設定3:1/17.04<div id="r_3" class="kitaiti"></div>
+    </div>
+    <div class="gray">設定4:1/15.86<div id="r_4" class="kitaiti"></div>
+    </div>
+    <div class="gray">設定5:1/15.09<div id="r_5" class="kitaiti"></div>
+    </div>
+    <div class="gray">設定6:1/14.83<div id="r_6" class="kitaiti"></div>
+    </div>
+  </div>
+
+  <div class="wakeru">
+    <div>収支計算機(貯メダル用)</div>
+    開始
+    <input type="number" id="tyomedaru" class="senseki" placeholder="0" min="0"> から
+    <input type="number" id="owari" class="senseki" placeholder="0" min="0"> 枚
+    <div id="syuusi"></div>
+    <button id="kekka" class="noselect">結果</button>
+    <div>投資
+      <input type="number" id="" class="senseki" placeholder="0" min="0"> 千円
+      <input type="number" id="" class="senseki" placeholder="0" min="0"> 枚
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>
