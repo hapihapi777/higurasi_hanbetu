@@ -19,10 +19,12 @@
   // 結果ボタン
 
   let accuracy = 1000000000000;
+  let dankai = 6; //6段階設定
 
-  // let bell_kakuritu = [18.70, 17.88, 17.04, 15.86, 15.09, 14.83];
+  let bell_kakuritu = [18.70, 17.88, 17.04, 15.86, 15.09, 14.83]; //共通ベル確率
+  let hazure_kakuritu = [69.350, 66.065, 64.695, 61.077, 58.882, 57.996]; //ART中ハズレ確率
 
-  // (ART中)ハズレ目
+  // (ART中)ハズレ(単独ボーナス含む)
     // (S1)1/69.350 (945/65536)
     // (S2)1/66.065 (992/65536)
     // (S3)1/64.695 (1013/65536)
@@ -136,15 +138,15 @@
     //   return;
     // }
 
-    GetKoyakuKakuritu();
+    // GetKoyakuKakuritu();
 
     let goukei = 0n;
     let kakuritu = [];
     //nCx * p^x * (1-p)^(n-x)
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < dankai; i++) {
       let item1 = Combi(n, x);
-      let item2 = koyaku_kakuritu_p[i] ** x;
-      let item3 = (BigInt(accuracy) - koyaku_kakuritu_p[i]) ** (n - x);
+      let item2 = GetKoyakuKakuritu()[i] ** x;
+      let item3 = (BigInt(accuracy) - GetKoyakuKakuritu()[i]) ** (n - x);
       kakuritu.push(item1 * item2 * item3);
       goukei += kakuritu[i]
       // console.log(kakuritu[i]);
@@ -152,7 +154,7 @@
 
     let hiritu = [];
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < dankai; i++) {
       hiritu.push(Math.round((parseFloat((kakuritu[i] / (goukei / BigInt(accuracy)) * 100n)) / accuracy) * 100) / 100);
       // console.log(hiritu[i]);
       document.getElementById("r_" + [i + 1]).textContent = " : " + hiritu[i] + "％";
@@ -162,10 +164,18 @@
     }
   }
 
-  function GetKoyakuKakuritu() {
+  function GetHiritu(array) {
+    GetKoyakuKakuritu(array);
+
     
+  }
+
+
+
+  function GetKoyakuKakuritu(array) {
+    let result = [];
     // koyaku_kakuritu_p.splice(0);
-    let kakuritu_test = [18.70, 17.88, 17.04, 15.86, 15.09, 14.83];
+    // let kakuritu_test = [18.70, 17.88, 17.04, 15.86, 15.09, 14.83];
     // ひぐらし2の共通ベル確率
 
     // (ART中)ハズレ目
@@ -176,12 +186,14 @@
     // (S5)1/58.882 (1113/65536)
     // (S6)1/57.996 (1130/65536)
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < dankai; i++) {
       let id = 'p' + (i + 1);
       // console.log(id);
-      koyaku_kakuritu_p.push(BigInt(Math.floor(1 / kakuritu_test[i] * accuracy)));
+      result.push(BigInt(Math.floor(1 / array[i] * accuracy)));
       // console.log(koyaku_kakuritu_p[i]);
     }
+
+    return result;
   }
   // 再帰関数
   function Combi(x, y) {
