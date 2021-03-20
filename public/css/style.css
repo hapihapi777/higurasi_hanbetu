@@ -44,6 +44,14 @@ button {
   background-color: yellow;
 }
 
+.hazure {
+  text-align: left;
+  /* user-select: none; */
+  margin: 0px 0px 6px 0px;
+  border-radius: 6px;
+  background-color: #ccc;
+}
+
 .btn_rt {
   text-align: left;
   /* user-select: none; */

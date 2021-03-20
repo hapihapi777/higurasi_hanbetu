@@ -33,16 +33,16 @@
     <div>RT</div>
     <div>
       <!-- RT中の入力欄 -->
-      <input type="number" id="rt_g" class="suuzi" value="0" min="0">
+      <input type="number" id="rt_g" class="suuzi" value="500" min="0">
+      <button id="rt_50" class="btn_rt noselect">+50G</button>
+      <button id="rt_90" class="btn_rt noselect">+90G</button>
+      <button id="rt_30" class="btn_rt noselect">+30G</button>
     </div>
-    <button id="rt_50" class="btn_rt noselect">+50G</button>
-    <button id="rt_90" class="btn_rt noselect">+90G</button>
-    <button id="rt_30" class="btn_rt noselect">+30G</button>
     <div>共通ベル</div>
     <button id="rt_b1" class="btn_bell noselect">ベル+</button>
-    <input type="number" id="rt_bell" class="suuzi" value="0" min="0">
-    <!-- <div>ハズレ</div> -->
-    <!-- <div><input type="number" class="suuzi"><button id="rt_hazure" class="hazure">ハズレ+</button></div> -->
+    <input type="number" id="rt_bell" class="suuzi" value="30" min="0">
+    <div>ART中ハズレ</div>
+    <div><button id="btn_hazure" class="hazure">ハズレ+</button><input type="number" id="rt_hazure" class="suuzi" value="0" min="0"></div>
   </div>
   <div class="wakeru">
     <button id="result" class="noselect">計算</button>
