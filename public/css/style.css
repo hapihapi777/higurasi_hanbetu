@@ -47,7 +47,7 @@ button {
 .hazure {
   text-align: left;
   /* user-select: none; */
-  margin: 0px 0px 6px 0px;
+  margin: 0px 6px 6px 0px;
   border-radius: 6px;
   background-color: #ccc;
 }
@@ -86,6 +86,23 @@ button {
 }
 
 #result_b {
+  font-size: 16px;
+  color: black;
+  margin-left: 4px;
+  /* float: left; */
+  /* display: inline; */
+  /* white-space: nowrap; */
+}
+
+#result_g_h {
+  font-size: 16px;
+  color: black;
+  margin-left: 4px;
+  /* display: inline; */
+  /* white-space: nowrap; */
+}
+
+#result_h_h {
   font-size: 16px;
   color: black;
   margin-left: 4px;

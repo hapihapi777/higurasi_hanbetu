@@ -10,6 +10,7 @@
   document.getElementById('rt_50').addEventListener('click', Kasan_rt50);
   document.getElementById('rt_90').addEventListener('click', Kasan_rt90);
   document.getElementById('rt_b1').addEventListener('click', Kasan_rt_bell);
+  document.getElementById('btn_hazure').addEventListener('click', Kasan_rt_hazure);
   // RTのボタン
 
   document.getElementById('result').addEventListener('click', Keisan);
@@ -21,28 +22,27 @@
   let accuracy = 1000000000000;
   let dankai = 6; //6段階設定
 
-  let kakera_g = parseInt(document.getElementById("kakera_g").value);
-  let kakera_all = parseInt(document.getElementById("kakera_all").value);
-  let kakera_bell = parseInt(document.getElementById("kakera_bell").value);
-  let rt_g = parseInt(document.getElementById("rt_g").value);
-  let rt_bell = parseInt(document.getElementById("rt_bell").value);
-  let rt_hazure = parseInt(document.getElementById("rt_hazure").value);
+  // let kakera_g = parseInt(document.getElementById("kakera_g").value);
+  // let kakera_all = parseInt(document.getElementById("kakera_all").value);
+  // let kakera_bell = parseInt(document.getElementById("kakera_bell").value);
+  // let rt_g = parseInt(document.getElementById("rt_g").value);
+  // let rt_bell = parseInt(document.getElementById("rt_bell").value);
+  // let rt_hazure = parseInt(document.getElementById("rt_hazure").value);
   // 入力欄
 
-  let rt_goukei = kakera_g + kakera_all + rt_g;
-  let bell_goukei = kakera_bell + rt_bell;
+  // let rt_goukei = kakera_g + kakera_all + rt_g;
+  // let bell_goukei = kakera_bell + rt_bell;
 
-  let bell_kakuritu = [18.70, 17.88, 17.04, 15.86, 15.09, 14.83]; //共通ベル確率
+  let bell_kakuritu = [18.700, 17.880, 17.040, 15.860, 15.090, 14.830]; //共通ベル確率
   let hazure_kakuritu = [69.350, 66.065, 64.695, 61.077, 58.882, 57.996]; //ART中ハズレ確率
 
   // (ART中)ハズレ(単独ボーナス含む)
-  // (S1)1/69.350 (945/65536)
-  // (S2)1/66.065 (992/65536)
-  // (S3)1/64.695 (1013/65536)
-  // (S4)1/61.077 (1073/65536)
-  // (S5)1/58.882 (1113/65536)
-  // (S6)1/57.996 (1130/65536)
-  // let koyaku_kakuritu_p = [];
+  // 1/69.350 (945/65536)
+  // 1/66.065 (992/65536)
+  // 1/64.695 (1013/65536)
+  // 1/61.077 (1073/65536)
+  // 1/58.882 (1113/65536)
+  // 1/57.996 (1130/65536)
   // 判別用
 
 
@@ -59,18 +59,21 @@
   //   if (parseInt(input_4.value) === "" || parseInt(input_4.value) < 0) input_4.value = 0;
   // }
 
+  //期待値算出関数(計算ボタンで実行)
   function Keisan() {
-    // let kakera_g = parseInt(document.getElementById("kakera_g").value);
-    // let kakera_all = parseInt(document.getElementById("kakera_all").value);
-    // let kakera_bell = parseInt(document.getElementById("kakera_bell").value);
-    // let rt_g = parseInt(document.getElementById("rt_g").value);
-    // let rt_bell = parseInt(document.getElementById("rt_bell").value);
     // 入力欄
+    let kakera_g = parseInt(document.getElementById("kakera_g").value);
+    let kakera_all = parseInt(document.getElementById("kakera_all").value);
+    let kakera_bell = parseInt(document.getElementById("kakera_bell").value);
+    let rt_g = parseInt(document.getElementById("rt_g").value);
+    let rt_bell = parseInt(document.getElementById("rt_bell").value);
+    let rt_hazure = parseInt(document.getElementById("rt_hazure").value);
 
+    // 入力欄の合計値
     let rt_goukei = kakera_g + kakera_all + rt_g;
     let bell_goukei = kakera_bell + rt_bell;
-    // 入力欄の合計値
 
+    // 確率の表示
     let goukei_kaisuu = bell_goukei + '/ ' + rt_goukei;
     if (rt_goukei <= bell_goukei) goukei_kaisuu = "入力値がおかしいです";
 
@@ -80,9 +83,25 @@
     document.getElementById("result_g").textContent = goukei_kaisuu;
     document.getElementById("result_b").textContent = bell_kakuritu;
 
-    console.log(Hanbetu()[0]);
+    let hazure_hyouzi = rt_hazure + '/ ' + rt_g;
+    if (rt_g <= rt_hazure) hazure_hyouzi = "入力値がおかしいです";
+
+    let hazure_r = '1/ ' + Math.round((rt_g / rt_hazure) * 1000) / 1000;
+    if (rt_g <= rt_hazure) hazure_r = "";
+
+    document.getElementById("result_g_h").textContent = hazure_hyouzi;
+    document.getElementById("result_h_h").textContent = hazure_r;
+
+
+    // 期待値の表示
+    for (let i = 0; i < dankai; i++) {
+      document.getElementById("r_" + [i + 1]).textContent = " : " + Hanbetu()[i] + "％";
+    }
+
+    console.log(Hanbetu());
   }
 
+  //ボタン
   function Kasan(x, y) {
     document.getElementById(x).value = y + parseInt(document.getElementById(x).value);
   }
@@ -98,7 +117,7 @@
     document.getElementById("kakera_g").value = 0 * n;
   }
 
-
+  // 加算ボタン
   function Kasan_kakera_bell() {
     Kasan("kakera_bell", 1);
   }
@@ -118,7 +137,12 @@
   function Kasan_rt_bell() {
     Kasan("rt_bell", 1);
   }
+  function Kasan_rt_hazure() {
+    Kasan("rt_hazure", 1);
+  }
+  // ここまでボタンの関数
 
+  // 収支用関数
   function Syuusi() {
     let tyomedaru = parseInt(document.getElementById("tyomedaru").value);
     let owari = parseInt(document.getElementById("owari").value);
@@ -129,33 +153,42 @@
     document.getElementById("syuusi").textContent = n;
   }
 
-
+  // 判別用関数
   function Hanbetu() {
+    let kakera_g = parseInt(document.getElementById("kakera_g").value);
+    let kakera_all = parseInt(document.getElementById("kakera_all").value);
+    let kakera_bell = parseInt(document.getElementById("kakera_bell").value);
+    let rt_g = parseInt(document.getElementById("rt_g").value);
+    let rt_bell = parseInt(document.getElementById("rt_bell").value);
+    let rt_hazure = parseInt(document.getElementById("rt_hazure").value);
+    // 入力欄
+
+    let rt_goukei = kakera_g + kakera_all + rt_g;
+    let bell_goukei = kakera_bell + rt_bell;
+    // 入力欄の合計値
+
+
+    let bell_kitaiti = GetHiritu(bell_goukei, rt_goukei, bell_kakuritu);
+    let hazure_kitaiti = GetHiritu(rt_hazure, rt_g, hazure_kakuritu);
+
     let goukei_hiritu = [];
     let goukei = 0;
 
     let result = [];
 
     for (let i = 0; i < dankai; i++) {
-      goukei_hiritu.push(Math.round(((GetHiritu(bell_goukei, rt_goukei, bell_kakuritu)[i] * GetHiritu(rt_hazure, rt_g, hazure_kakuritu)[i]) / 2) * 100) / 100);
+      goukei_hiritu.push(Math.round(((bell_kitaiti[i] * hazure_kitaiti[i])) * 100) / 100);
       goukei += goukei_hiritu[i];
-      // (Math.round((parseFloat((kakuritu[i] / (goukei / BigInt(accuracy)) * 100n)) / accuracy) * 100) / 100);
     }
 
     for (let i = 0; i < dankai; i++) {
       result.push(Math.floor((goukei_hiritu[i] / goukei) * 10000) / 100);
     }
 
-    // console.log("ベル確率:" + bell_goukei + "/" + rt_goukei);
-    // console.log("ハズレ確率:" + rt_hazure + "/" + rt_g);
-    // console.log(GetHiritu(bell_goukei, rt_goukei, bell_kakuritu));
-    // console.log(GetHiritu(rt_hazure, rt_g, hazure_kakuritu));
-    // console.log(goukei_hiritu);
-    // console.log("期待値:" + result);
-
     return result;
   }
 
+  // 比率関数
   function GetHiritu(bunsi, bunbo, array) {
 
     let setteiti = GetKoyakuKakuritu(array);
@@ -180,11 +213,9 @@
     }
 
     return hiritu;
-
   }
 
-
-
+  // 小役確率の関数
   function GetKoyakuKakuritu(array) {
     let result = [];
     for (let i = 0; i < dankai; i++) {

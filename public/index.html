@@ -33,14 +33,14 @@
     <div>RT</div>
     <div>
       <!-- RT中の入力欄 -->
-      <input type="number" id="rt_g" class="suuzi" value="500" min="0">
+      <input type="number" id="rt_g" class="suuzi" value="0" min="0">
       <button id="rt_50" class="btn_rt noselect">+50G</button>
       <button id="rt_90" class="btn_rt noselect">+90G</button>
       <button id="rt_30" class="btn_rt noselect">+30G</button>
     </div>
     <div>共通ベル</div>
     <button id="rt_b1" class="btn_bell noselect">ベル+</button>
-    <input type="number" id="rt_bell" class="suuzi" value="30" min="0">
+    <input type="number" id="rt_bell" class="suuzi" value="0" min="0">
     <div>ART中ハズレ</div>
     <div><button id="btn_hazure" class="hazure">ハズレ+</button><input type="number" id="rt_hazure" class="suuzi" value="0" min="0"></div>
   </div>
@@ -50,10 +50,30 @@
     </div>
     <div class="nowrap">ベル確率:<div id="result_b"></div>
     </div>
-    <!-- <div>ハズレ確率:</div><div id="result_H"></div> -->
+    <!-- <button id="result_h" class="noselect">計算</button> -->
+    <div class="nowrap">合計(ハズレ/G数):<div id="result_g_h"></div>
+    </div>
+    <div class="nowrap">ハズレ確率:<div id="result_h_h"></div>
+    </div>
+    
   </div>
 
-  <div class="wakeru">設定別共通ベル確率
+  <div class="wakeru">期待値(共通ベル&RT中ハズレ)
+    <div class="gray">設定1:<div id="r_1" class="kitaiti"></div>
+    </div>
+    <div class="gray">設定2:<div id="r_2" class="kitaiti"></div>
+    </div>
+    <div class="gray">設定3:<div id="r_3" class="kitaiti"></div>
+    </div>
+    <div class="gray">設定4:<div id="r_4" class="kitaiti"></div>
+    </div>
+    <div class="gray">設定5:<div id="r_5" class="kitaiti"></div>
+    </div>
+    <div class="gray">設定6:<div id="r_6" class="kitaiti"></div>
+    </div>
+  </div>
+
+  <!-- <div class="wakeru">設定別共通ベル確率
     <div class="gray">設定1:1/18.70<div id="r_1" class="kitaiti"></div>
     </div>
     <div class="gray">設定2:1/17.88<div id="r_2" class="kitaiti"></div>
@@ -66,7 +86,7 @@
     </div>
     <div class="gray">設定6:1/14.83<div id="r_6" class="kitaiti"></div>
     </div>
-  </div>
+  </div> -->
 
   <div class="wakeru">
     <div>収支計算機(貯メダル用)</div>
