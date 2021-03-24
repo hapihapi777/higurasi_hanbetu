@@ -19,7 +19,7 @@
   document.getElementById('kekka').addEventListener('click', Syuusi);
   // 結果ボタン
 
-  let accuracy = 1000000000000;
+  let accuracy = 100000000000000;
   let dankai = 6; //6段階設定
 
   // let kakera_g = parseInt(document.getElementById("kakera_g").value);
