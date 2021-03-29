@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ひぐらし2設定判別ツールv0.81</title>
+  <title>ひぐらし2設定判別ツールv0.82</title>
   <link rel="stylesheet" href="css/style.css">
   <h4>ひぐらしの<span class="red">な</span>く頃に</h4>
   <h2>祭</h2>
-  <h4 class="hidaridume">2 計算v0.81</h4>
+  <h4 class="hidaridume">2 計算v0.82</h4>
 </head>
 
 <body>
-  <div class="wakeru">
+  <div class="wakeru noselect">
     <div>カケラ紡ぎ(回想)</div>
     <h6>カケラ回想or有利区間終了時に合計してリセット</h6>
     <!-- カケラ紡ぎG数ボタン -->
@@ -29,7 +29,7 @@
     <!-- 共通ベル入力欄 -->
     <input type="number" id="kakera_bell" class="suuzi" value="0" min="0">
   </div>
-  <div class="wakeru">
+  <div class="wakeru noselect">
     <div>RT</div>
     <div>
       <!-- RT中の入力欄 -->
@@ -44,7 +44,7 @@
     <div>ART中ハズレ</div>
     <div><button id="btn_hazure" class="hazure noselect">ハズレ+</button><input type="number" id="rt_hazure" class="suuzi" value="0" min="0"></div>
   </div>
-  <div class="wakeru">
+  <div class="wakeru noselect">
     <button id="result" class="noselect">計算</button>
     <div class="nowrap">合計(ベル/G数):<div id="result_g"></div>
     </div>
