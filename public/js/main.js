@@ -75,7 +75,7 @@
 
     // 確率の表示
     let goukei_kaisuu = bell_goukei + '/ ' + rt_goukei;
-    if (rt_goukei < bell_goukei) goukei_kaisuu = "入力値がおかしいです";
+    if (rt_goukei <= bell_goukei) goukei_kaisuu = "入力値がおかしいです";
 
     let bell_kakuritu = '1/ ' + Math.round((rt_goukei / bell_goukei) * 1000) / 1000;
     if (rt_goukei < bell_goukei) bell_kakuritu = "";
@@ -85,11 +85,11 @@
     document.getElementById("result_b").textContent = bell_kakuritu;
 
     let hazure_hyouzi = rt_hazure + '/ ' + rt_g;
-    if (rt_g <= rt_hazure) hazure_hyouzi = "入力値がおかしいです";
+    if (rt_g < rt_hazure) hazure_hyouzi = "入力値がおかしいです";
 
     let hazure_r = '1/ ' + Math.round((rt_g / rt_hazure) * 1000) / 1000;
     if (rt_g <= rt_hazure) hazure_r = "";
-    if (rt_hazure === 0) hazure_r = '0/ ' + rt_goukei;
+    if (rt_hazure === 0) hazure_r = '0/ ' + rt_g;
 
     document.getElementById("result_g_h").textContent = hazure_hyouzi;
     document.getElementById("result_h_h").textContent = hazure_r;
