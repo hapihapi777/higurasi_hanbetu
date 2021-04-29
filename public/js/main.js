@@ -1,23 +1,7 @@
 'use strict';
 {
+  Button_General();
 
-  document.getElementById('kakera_g1').addEventListener('click', Kasan_kakera_g);
-  document.getElementById('kakera_b1').addEventListener('click', Kasan_kakera_bell);
-  document.getElementById('kakera_tuika').addEventListener('click', Kasan_kakera_all);
-  // カケラ紡ぎのボタン
-
-  document.getElementById('rt_30').addEventListener('click', Kasan_rt30);
-  document.getElementById('rt_50').addEventListener('click', Kasan_rt50);
-  document.getElementById('rt_90').addEventListener('click', Kasan_rt90);
-  document.getElementById('rt_b1').addEventListener('click', Kasan_rt_bell);
-  document.getElementById('btn_hazure').addEventListener('click', Kasan_rt_hazure);
-  // RTのボタン
-
-  document.getElementById('result').addEventListener('click', Keisan);
-  // 計算ボタン
-
-  document.getElementById('kekka').addEventListener('click', Syuusi);
-  // 結果ボタン
 
   let accuracy = 100000000000000;
   let dankai = 6; //6段階設定
@@ -48,16 +32,6 @@
 
   // Cure();
 
-  // function Cure() {
-  //   let input_1 = document.getElementById("kakera_g");
-  //   let input_2 = document.getElementById("kakera_bell");
-  //   let input_3 = document.getElementById("rt_g");
-  //   let input_4 = document.getElementById("rt_bell");
-  //   if (parseInt(input_1.value) === "" || parseInt(input_1.value) < 0) input_1.value = 0;
-  //   if (parseInt(input_2.value) === "" || parseInt(input_2.value) < 0) input_2.value = 0;
-  //   if (parseInt(input_3.value) === "" || parseInt(input_3.value) < 0) input_3.value = 0;
-  //   if (parseInt(input_4.value) === "" || parseInt(input_4.value) < 0) input_4.value = 0;
-  // }
 
   //期待値算出関数(計算ボタンで実行)
   function Keisan() {
@@ -103,47 +77,6 @@
     console.log(Hanbetu());
   }
 
-  //ボタン
-  function Kasan(x, y) {
-    document.getElementById(x).value = y + parseInt(document.getElementById(x).value);
-  }
-
-  function Kasan_kakera_g() {
-    Kasan("kakera_g", 1);
-  }
-
-  // 追加時にkakera_gをリセット
-  function Kasan_kakera_all() {
-    let n = parseInt(document.getElementById('kakera_g').value);
-    Kasan("kakera_all", n);
-    document.getElementById("kakera_g").value = 0 * n;
-  }
-
-  // 加算ボタン
-  function Kasan_kakera_bell() {
-    Kasan("kakera_bell", 1);
-  }
-
-  function Kasan_rt30() {
-    Kasan("rt_g", 30);
-  }
-
-  function Kasan_rt50() {
-    Kasan("rt_g", 50);
-  }
-
-  function Kasan_rt90() {
-    Kasan("rt_g", 90);
-  }
-
-  function Kasan_rt_bell() {
-    Kasan("rt_bell", 1);
-  }
-  function Kasan_rt_hazure() {
-    Kasan("rt_hazure", 1);
-  }
-  // ここまでボタンの関数
-
   // 収支用関数
   function Syuusi() {
     let tyomedaru = parseInt(document.getElementById("tyomedaru").value);
@@ -168,7 +101,6 @@
     let rt_goukei = kakera_g + kakera_all + rt_g;
     let bell_goukei = kakera_bell + rt_bell;
     // 入力欄の合計値
-
 
     let bell_kitaiti = GetHiritu(bell_goukei, rt_goukei, bell_kakuritu);
     let hazure_kitaiti = GetHiritu(rt_hazure, rt_g, hazure_kakuritu);
@@ -239,4 +171,54 @@
 
     return val;
   }
+
+  function Button_General() {
+
+    Button_Keisan('btn_kakera_g1', 'kakera_g', 1);
+    Button_Keisan('btn_kakera_b1', 'kakera_bell', 1);
+
+    GetCount('btn_rt_50', 'rt_g', 50, 'count_50');
+    GetCount('btn_rt_90', 'rt_g', 90, 'count_90');
+    GetCount('btn_rt_30', 'rt_g', 30, 'count_30');
+
+    Button_Keisan('btn_rt_b1', 'rt_bell', 1);
+    Button_Keisan('btn_hazure', 'rt_hazure', 1);
+
+    document.getElementById('btn_kakera_tuika').addEventListener('click', Kasan_kakera_all);
+    // カケラ紡ぎのボタン
+
+    document.getElementById('result').addEventListener('click', Keisan);
+    // 計算ボタン
+
+    document.getElementById('kekka').addEventListener('click', Syuusi);
+    // 結果ボタン
+  }
+
+
+  // 追加時にkakera_gをリセット
+  function Kasan_kakera_all() {
+    let n = parseInt(document.getElementById('kakera_g').value);
+    let m = parseInt(document.getElementById("kakera_all").value);
+    document.getElementById("kakera_all").value = m + n;
+    document.getElementById("kakera_g").value = 0 * n;
+  }
+
+
+  // 良く使うボタンの関数
+  function Button_Keisan(x, y, z) {
+    document.getElementById(x).addEventListener('click', function () {
+      document.getElementById(y).value = parseInt(document.getElementById(y).value) + z;
+    });
+  }
+
+  
+  function GetCount(x, y, z, c) {
+    let n = 0;
+    document.getElementById(x).addEventListener('click', function () {
+      document.getElementById(y).value = parseInt(document.getElementById(y).value) + z;
+      n += 1;
+      document.getElementById(c).textContent = n + "回";
+    });
+  }
+
 }

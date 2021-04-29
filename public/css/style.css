@@ -1,8 +1,13 @@
+*:focus {
+  outline: none;
+  }
+  
 body {
   font-family: Hiragino Maru Gothic Pro W4, Verdana, sans-serif;
   font-size: 20px;
   touch-action: manipulation;
 }
+
 h4 {
   color: gray;
   margin: 0;
@@ -61,11 +66,6 @@ button {
   background-color: rgb(25, 167, 250);
 }
 
-/* .hazure {
-  margin: 8px;
-  padding: 8px;
-  border-radius: 8px;
-} */
 
 #result {
   user-select: none;
@@ -98,17 +98,12 @@ button {
   font-size: 16px;
   color: black;
   margin-left: 4px;
-  /* display: inline; */
-  /* white-space: nowrap; */
 }
 
 #result_h_h {
   font-size: 16px;
   color: black;
   margin-left: 4px;
-  /* float: left; */
-  /* display: inline; */
-  /* white-space: nowrap; */
 }
 
 .suuzi {
@@ -154,4 +149,32 @@ button {
   -moz-user-select: none; /* Firefox */
   -webkit-user-select: none; /* Safari、Chromeなど */
   -ms-user-select: none; /* IE10かららしい */
+}
+
+.item1 {
+  width: 95%;
+}
+
+.item4 {
+  display: inline;
+  text-align: left;
+  width: 23%;
+}
+.item2 {
+  display: inline;
+  text-align: left;
+  width: 45%;
+  padding: 2px;
+}
+.flexcontainer {
+  margin: 4px;
+  border: 2px dotted #ccc;
+  border-radius: 6px;
+  padding: 0px 0px 8px 8px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.count {
+  color: gray;
 }

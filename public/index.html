@@ -4,45 +4,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ひぐらし2設定判別ツールv0.82</title>
+  <title>ひぐらし2設定判別ツールv0.9</title>
   <link rel="stylesheet" href="css/style.css">
   <h4>ひぐらしの<span class="red">な</span>く頃に</h4>
   <h2>祭</h2>
-  <h4 class="hidaridume">2 計算v0.82</h4>
+  <h4 class="hidaridume">2 計算v0.9</h4>
 </head>
 
 <body>
-  <div class="wakeru noselect">
-    <div>カケラ紡ぎ(回想)</div>
-    <h6>カケラ回想or有利区間終了時に合計してリセット</h6>
+  <div class="flexcontainer noselect">
+    <div class="item1">カケラ紡ぎ(回想)</div>
+    <h6 class="item1">カケラ回想or有利区間終了時に合計してリセット</h6>
     <!-- カケラ紡ぎG数ボタン -->
-    <button id="kakera_g1" class="btn_rt noselect">G数+</button>
-    <!-- カケラ紡ぎのG数入力欄 -->
-    <input type="number" id="kakera_g" class="suuzi" value="0" min="0">
-    <!-- カケラ紡ぎ追加ボタン -->
-    <button id="kakera_tuika" class="btn_rt noselect">合計G</button>
-    <!-- カケラ紡ぎall -->
-    <input type="number" id="kakera_all" class="suuzi" value="0" min="0">
-    <div>共通ベル</div>
-    <!-- カケラ中のベルボタン -->
-    <button id="kakera_b1" class="btn_bell noselect">ベル+</button>
-    <!-- 共通ベル入力欄 -->
-    <input type="number" id="kakera_bell" class="suuzi" value="0" min="0">
-  </div>
-  <div class="wakeru noselect">
-    <div>RT</div>
-    <div>
-      <!-- RT中の入力欄 -->
-      <input type="number" id="rt_g" class="suuzi" value="0" min="0">
-      <button id="rt_50" class="btn_rt noselect">+50G</button>
-      <button id="rt_90" class="btn_rt noselect">+90G</button>
-      <button id="rt_30" class="btn_rt noselect">+30G</button>
+    <div class="item2">
+      <button id="btn_kakera_g1" class="btn_rt noselect">G数+</button>
+      <!-- カケラ紡ぎのG数入力欄 -->
+      <input type="number" id="kakera_g" class="suuzi" value="0" min="0">
+      <!-- カケラ紡ぎ追加ボタン -->
     </div>
-    <div>共通ベル</div>
-    <button id="rt_b1" class="btn_bell noselect">ベル+</button>
-    <input type="number" id="rt_bell" class="suuzi" value="0" min="0">
-    <div>ART中ハズレ</div>
-    <div><button id="btn_hazure" class="hazure noselect">ハズレ+</button><input type="number" id="rt_hazure" class="suuzi" value="0" min="0"></div>
+    <div class="item2">
+      <button id="btn_kakera_tuika" class="btn_rt noselect">合計G</button>
+      <!-- カケラ紡ぎall -->
+      <input type="number" id="kakera_all" class="suuzi" value="0" min="0">
+    </div>
+    <div class="item1">共通ベル</div>
+    <div class="item1">
+      <button id="btn_kakera_b1" class="btn_bell noselect">ベル+</button>
+      <!-- 共通ベル入力欄 -->
+      <input type="number" id="kakera_bell" class="suuzi" value="0" min="0">
+    </div>
+
+    <!-- カケラ中のベルボタン -->
+  </div>
+  <div class="flexcontainer noselect">
+    <div class="item4">RT</div>
+    <div class="item4 count" id="count_50">0回</div>
+    <div class="item4 count" id="count_90">0回</div>
+    <div class="item4 count" id="count_30">0回</div>
+    <!-- RT中の入力欄 -->
+    <div class="item4">
+      <input type="number" id="rt_g" class="suuzi" value="0" min="0">
+    </div>
+    <div class="item4">
+      <button id="btn_rt_50" class="btn_rt noselect">+50G</button>
+    </div>
+    <div class="item4">
+      <button id="btn_rt_90" class="btn_rt noselect">+90G</button>
+    </div>
+    <div class="item4">
+      <button id="btn_rt_30" class="btn_rt noselect">+30G</button>
+    </div>
+
+    <div class="item2">共通ベル</div>
+    <div class="item2">ハズレ</div>
+    <div class="item2">
+      <button id="btn_rt_b1" class="btn_bell noselect">ベル+</button>
+      <input type="number" id="rt_bell" class="suuzi" value="0" min="0">
+    </div>
+    <div class="item2">
+        <button id="btn_hazure" class="hazure noselect">ハズレ+</button>
+        <input type="number" id="rt_hazure" class="suuzi" value="0" min="0">
+    </div>
   </div>
   <div class="wakeru noselect">
     <button id="result" class="noselect">計算</button>
@@ -50,7 +72,7 @@
     </div>
     <div class="nowrap">ベル確率:<div id="result_b"></div>
     </div>
-    <!-- <button id="result_h" class="noselect">計算</button> -->
+    
     <div class="nowrap">合計(ハズレ/G数):<div id="result_g_h"></div>
     </div>
     <div class="nowrap">ハズレ確率:<div id="result_h_h"></div>
