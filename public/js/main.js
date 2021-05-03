@@ -1,36 +1,10 @@
 'use strict';
 {
-  Button_General();
-
-
   let accuracy = 100000000000000;
   let dankai = 6; //6段階設定
 
-  // let kakera_g = parseInt(document.getElementById("kakera_g").value);
-  // let kakera_all = parseInt(document.getElementById("kakera_all").value);
-  // let kakera_bell = parseInt(document.getElementById("kakera_bell").value);
-  // let rt_g = parseInt(document.getElementById("rt_g").value);
-  // let rt_bell = parseInt(document.getElementById("rt_bell").value);
-  // let rt_hazure = parseInt(document.getElementById("rt_hazure").value);
-  // 入力欄
+  Button_General();
 
-  // let rt_goukei = kakera_g + kakera_all + rt_g;
-  // let bell_goukei = kakera_bell + rt_bell;
-
-  let bell_kakuritu = [18.700, 17.880, 17.040, 15.860, 15.090, 14.830]; //共通ベル確率
-  let hazure_kakuritu = [69.350, 66.065, 64.695, 61.077, 58.882, 57.996]; //ART中ハズレ確率
-
-  // (ART中)ハズレ(単独ボーナス含む)
-  // 1/69.350 (945/65536)
-  // 1/66.065 (992/65536)
-  // 1/64.695 (1013/65536)
-  // 1/61.077 (1073/65536)
-  // 1/58.882 (1113/65536)
-  // 1/57.996 (1130/65536)
-  // 判別用
-
-
-  // Cure();
 
 
   //期待値算出関数(計算ボタンで実行)
@@ -51,12 +25,12 @@
     let goukei_kaisuu = bell_goukei + '/ ' + rt_goukei;
     if (rt_goukei <= bell_goukei) goukei_kaisuu = "入力値がおかしいです";
 
-    let bell_kakuritu = '1/ ' + Math.round((rt_goukei / bell_goukei) * 1000) / 1000;
-    if (rt_goukei < bell_goukei) bell_kakuritu = "";
-    if (bell_goukei === 0) bell_kakuritu = '0/ ' + rt_goukei;
+    let bell_result = '1/ ' + Math.round((rt_goukei / bell_goukei) * 1000) / 1000;
+    if (rt_goukei < bell_goukei) bell_result = "";
+    if (bell_goukei === 0) bell_result = '0/ ' + rt_goukei;
 
     document.getElementById("result_g").textContent = goukei_kaisuu;
-    document.getElementById("result_b").textContent = bell_kakuritu;
+    document.getElementById("result_b").textContent = bell_result;
 
     let hazure_hyouzi = rt_hazure + '/ ' + rt_g;
     if (rt_g < rt_hazure) hazure_hyouzi = "入力値がおかしいです";
@@ -70,11 +44,12 @@
 
 
     // 期待値の表示
+    let result = Hanbetu();
     for (let i = 0; i < dankai; i++) {
-      document.getElementById("r_" + [i + 1]).textContent = " : " + Hanbetu()[i] + "％";
+      document.getElementById("r_" + [i + 1]).textContent = result[i] + "％";
     }
 
-    console.log(Hanbetu());
+    console.log(result);
   }
 
   // 収支用関数
@@ -90,6 +65,18 @@
 
   // 判別用関数
   function Hanbetu() {
+    let bell_kakuritu = [18.700, 17.880, 17.040, 15.860, 15.090, 14.830]; //共通ベル確率
+    let hazure_kakuritu = [69.350, 66.065, 64.695, 61.077, 58.882, 57.996]; //ART中ハズレ確率
+
+    let num = GetRadio();
+    if (num > 0) {
+      for (let i = 0; i < num; i++) {
+        bell_kakuritu[i] = 1;
+        hazure_kakuritu[i] = 1;
+      }
+    }
+    console.log(num);
+
     let kakera_g = parseInt(document.getElementById("kakera_g").value);
     let kakera_all = parseInt(document.getElementById("kakera_all").value);
     let kakera_bell = parseInt(document.getElementById("kakera_bell").value);
@@ -104,6 +91,8 @@
 
     let bell_kitaiti = GetHiritu(bell_goukei, rt_goukei, bell_kakuritu);
     let hazure_kitaiti = GetHiritu(rt_hazure, rt_g, hazure_kakuritu);
+    console.log("ベルのみ：" + bell_kitaiti);
+    console.log("ハズレのみ：" + hazure_kitaiti);
 
     let goukei_hiritu = [];
     let goukei = 0;
@@ -177,9 +166,9 @@
     Button_Keisan('btn_kakera_g1', 'kakera_g', 1);
     Button_Keisan('btn_kakera_b1', 'kakera_bell', 1);
 
-    GetCount('btn_rt_50', 'rt_g', 50, 'count_50');
-    GetCount('btn_rt_90', 'rt_g', 90, 'count_90');
-    GetCount('btn_rt_30', 'rt_g', 30, 'count_30');
+    GetCount('btn_rt_50', 'rt_g', 50, 'count_50', 'btn_mainasu_50');
+    GetCount('btn_rt_90', 'rt_g', 90, 'count_90', 'btn_mainasu_90');
+    GetCount('btn_rt_30', 'rt_g', 30, 'count_30', 'btn_mainasu_30');
 
     Button_Keisan('btn_rt_b1', 'rt_bell', 1);
     Button_Keisan('btn_hazure', 'rt_hazure', 1);
@@ -193,6 +182,7 @@
     document.getElementById('kekka').addEventListener('click', Syuusi);
     // 結果ボタン
   }
+
 
 
   // 追加時にkakera_gをリセット
@@ -211,14 +201,39 @@
     });
   }
 
-  
-  function GetCount(x, y, z, c) {
+
+  function GetRadio() { // ラジオボタン
+    let target = document.getElementById("target");
+    let s = parseInt(target.jogai.value);
+    console.log(s);
+    return s;
+  }
+
+  function GetCount(x, y, z, c, m) {
     let n = 0;
     document.getElementById(x).addEventListener('click', function () {
       document.getElementById(y).value = parseInt(document.getElementById(y).value) + z;
       n += 1;
       document.getElementById(c).textContent = n + "回";
+      console.log(n);
+      return n;
+    });
+    //     let weightInput = document.getElementById('input#weight');
+    // weightInput.disabled = false;
+    // document.getElementById(m).disabled = true;
+    if (n > 0
+      // && z < parseInt(document.getElementById(y).value)
+    ) {
+      document.getElementById(m).disabled = false;
+    }
+    document.getElementById(m).addEventListener('click', function () {
+      document.getElementById(y).value = parseInt(document.getElementById(y).value) - z;
+      n -= 1;
+      document.getElementById(c).textContent = n + "回";
+      console.log(n);
+      return n;
     });
   }
+
 
 }

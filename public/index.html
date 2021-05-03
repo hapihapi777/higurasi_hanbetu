@@ -45,15 +45,14 @@
     <div class="item4">
       <input type="number" id="rt_g" class="suuzi" value="0" min="0">
     </div>
-    <div class="item4">
-      <button id="btn_rt_50" class="btn_rt noselect">+50G</button>
-    </div>
-    <div class="item4">
-      <button id="btn_rt_90" class="btn_rt noselect">+90G</button>
-    </div>
-    <div class="item4">
-      <button id="btn_rt_30" class="btn_rt noselect">+30G</button>
-    </div>
+    <div class="item4"><button id="btn_rt_50" class="btn_rt noselect">+50G</button></div>
+    <div class="item4"><button id="btn_rt_90" class="btn_rt noselect">+90G</button></div>
+    <div class="item4"><button id="btn_rt_30" class="btn_rt noselect">+30G</button></div>
+
+    <div class="item4 gray">-btn</div>
+    <div class="item4"><button id="btn_mainasu_50" class="noselect mainasu">-50G</button></div>
+    <div class="item4"><button id="btn_mainasu_90" class="noselect mainasu">-90G</button></div>
+    <div class="item4"><button id="btn_mainasu_30" class="noselect mainasu">-30G</button></div>
 
     <div class="item2">共通ベル</div>
     <div class="item2">ハズレ</div>
@@ -62,36 +61,54 @@
       <input type="number" id="rt_bell" class="suuzi" value="0" min="0">
     </div>
     <div class="item2">
-        <button id="btn_hazure" class="hazure noselect">ハズレ+</button>
-        <input type="number" id="rt_hazure" class="suuzi" value="0" min="0">
+      <button id="btn_hazure" class="hazure noselect">ハズレ+</button>
+      <input type="number" id="rt_hazure" class="suuzi" value="0" min="0">
     </div>
   </div>
-  <div class="wakeru noselect">
-    <button id="result" class="noselect">計算</button>
-    <div class="nowrap">合計(ベル/G数):<div id="result_g"></div>
+  <div class="flexcontainer">
+
+    <form id="target">
+      <div class="item1">
+        <label class="noselect nowrap"><input type="radio" id="over1" name="jogai" value="0" checked>全設定</label>
+      </div>
+      <div class="item4">
+        <label class="noselect nowrap"><input type="radio" id="over2" name="jogai" value="1">2以上</label>
+      </div>
+      <div class="item4">
+        <label class="noselect nowrap"><input type="radio" id="over3" name="jogai" value="2">3以上</label>
+      </div>
+      <div class="item4">
+        <label class="noselect nowrap"><input type="radio" id="over4" name="jogai" value="3">4以上</label>
+      </div>
+      <div class="item4">
+        <label class="noselect nowrap"><input type="radio" id="over5" name="jogai" value="4">5以上</label>
+      </div>
+
+    </form>
+    <div class="item1">
+      <button id="result" class="noselect">計算</button>
     </div>
-    <div class="nowrap">ベル確率:<div id="result_b"></div>
-    </div>
-    
-    <div class="nowrap">合計(ハズレ/G数):<div id="result_g_h"></div>
-    </div>
-    <div class="nowrap">ハズレ確率:<div id="result_h_h"></div>
-    </div>
-    
+
+    <div class="nowrap item1">合計(ベル/G数):<span id="result_g"></span></div>
+    <div class="nowrap item1">ベル確率:<span id="result_b"></span></div>
+
+    <div class="nowrap item1">合計(ハズレ/G数):<span id="result_g_h"></span></div>
+    <div class="nowrap item1">ハズレ確率:<span id="result_h_h"></span></div>
+
   </div>
 
-  <div class="wakeru">期待値(共通ベル&RT中ハズレ)
-    <div class="gray">設定1:<div id="r_1" class="kitaiti"></div>
+  <div class="flexcontainer">期待値(共通ベル&RT中ハズレ)
+    <div class="gray item1">設定1:<div id="r_1" class="kitaiti"></div>
     </div>
-    <div class="gray">設定2:<div id="r_2" class="kitaiti"></div>
+    <div class="gray item1">設定2:<div id="r_2" class="kitaiti"></div>
     </div>
-    <div class="gray">設定3:<div id="r_3" class="kitaiti"></div>
+    <div class="gray item1">設定3:<div id="r_3" class="kitaiti"></div>
     </div>
-    <div class="gray">設定4:<div id="r_4" class="kitaiti"></div>
+    <div class="gray item1">設定4:<div id="r_4" class="kitaiti"></div>
     </div>
-    <div class="gray">設定5:<div id="r_5" class="kitaiti"></div>
+    <div class="gray item1">設定5:<div id="r_5" class="kitaiti"></div>
     </div>
-    <div class="gray">設定6:<div id="r_6" class="kitaiti"></div>
+    <div class="gray item1">設定6:<div id="r_6" class="kitaiti"></div>
     </div>
   </div>
 
