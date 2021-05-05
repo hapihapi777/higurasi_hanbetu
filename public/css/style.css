@@ -29,6 +29,7 @@
     font-family: Hiragino Maru Gothic Pro W4, Verdana, sans-serif;
     font-size: 16px;
     border-radius: 8px;
+    text-align: left;
     /* -webkit-touch-callout: none;
     user-select: none; */
     /* outline: none; */
@@ -212,6 +213,7 @@
     font-family: Hiragino Maru Gothic Pro W4, Verdana, sans-serif;
     font-size: 16px;
     border-radius: 8px;
+    text-align: left;
     /* -webkit-touch-callout: none;
     user-select: none; */
     /* outline: none; */
