@@ -65,6 +65,45 @@
       <input type="number" id="rt_hazure" class="suuzi" value="0" min="0">
     </div>
   </div>
+
+
+  <div class="flexcontainer">
+    <div class="item1">オヤシロ: <span id="oyasiro_count" class="count">0回</span><span id="" class="setumei"> ※回数*29G</span></div>
+    
+    <div class="item2">
+      <button id="big_oyasiro" class="big_g noselect">BIG+1回</button>
+      <input type="number" id="oyasiro_g" class="suuzi" value="0" min="0">
+    </div>
+    <div class="item2">
+      <button id="oyasiro_bell" class="btn_bell noselect">斜めベル+</button>
+      <input type="number" id="rare_bell" class="suuzi" value="0" min="0">
+    </div>
+
+    <div class="item1">
+      <button id="big_oyasiro_mainasu" class="mainasu noselect">BIG-1回</button>
+    </div>
+
+    <div class="item1">ひぐらし: <span id="higurasi_count" class="count">0回</span><span id="" class="setumei"> ※回数*23G + ハズレ</span></div>
+    
+    <div class="item2">
+      <button id="big_higurasi" class="big_g noselect">BIG+1回</button>
+      <input type="number" id="higurasi_g" class="suuzi" value="0" min="0">
+    </div>
+    <div class="item2">
+      <button id="higurasi_hazure" class="hazure noselect">ハズレ+</button>
+      <input type="number" id="higurasi_hazure_count" class="suuzi" value="0" min="0">
+    </div>
+
+    <div class="item2">
+      <button id="big_higurasi_mainasu" class="mainasu noselect">BIG-1回</button>
+    </div>
+
+    <div class="item2">
+      <button id="higurasi_hazure_mainasu" class="mainasu noselect">ハズレ-</button>
+    </div>
+
+  </div>
+
   <div class="flexcontainer">
 
     <form id="target">
@@ -89,15 +128,21 @@
       <button id="result" class="noselect">計算</button>
     </div>
 
-    <div class="nowrap item1">合計(ベル/G数):<span id="result_g"></span></div>
-    <div class="nowrap item1">ベル確率:<span id="result_b"></span></div>
+    <div class="nowrap item1">ベル/RTG数(実数値):<span id="result_g" class="result_display"></span></div>
+    <div class="nowrap item1">ベル確率:<span id="result_b" class="result_display"></span></div>
+    
+    <div class="nowrap item1">ハズレ/RTG数(実数値):<span id="result_g_h" class="result_display"></span></div>
+    <div class="nowrap item1">ハズレ確率:<span id="result_h_h" class="result_display"></span></div>
+    
+    <!-- <div class="nowrap item1">レアベル/オヤシロG数(実数値):<span id="" class="result_display"></span></div>
+    <div class="nowrap item1">オヤシロ中レアベル確率:<span id="" class="result_display"></span></div>
 
-    <div class="nowrap item1">合計(ハズレ/G数):<span id="result_g_h"></span></div>
-    <div class="nowrap item1">ハズレ確率:<span id="result_h_h"></span></div>
-
+    <div class="nowrap item1">ハズレ/ひぐらしG数(実数値):<span id="" class="result_display"></span></div>
+    <div class="nowrap item1">ひぐらし中ハズレ確率:<span id="" class="result_display"></span></div> -->
   </div>
 
-  <div class="flexcontainer">期待値(共通ベル&RT中ハズレ)
+
+  <div class="flexcontainer">期待値
     <div class="gray item1">設定1:<div id="r_1" class="kitaiti"></div>
     </div>
     <div class="gray item1">設定2:<div id="r_2" class="kitaiti"></div>
@@ -112,23 +157,9 @@
     </div>
   </div>
 
-  <!-- <div class="wakeru">設定別共通ベル確率
-    <div class="gray">設定1:1/18.70<div id="r_1" class="kitaiti"></div>
-    </div>
-    <div class="gray">設定2:1/17.88<div id="r_2" class="kitaiti"></div>
-    </div>
-    <div class="gray">設定3:1/17.04<div id="r_3" class="kitaiti"></div>
-    </div>
-    <div class="gray">設定4:1/15.86<div id="r_4" class="kitaiti"></div>
-    </div>
-    <div class="gray">設定5:1/15.09<div id="r_5" class="kitaiti"></div>
-    </div>
-    <div class="gray">設定6:1/14.83<div id="r_6" class="kitaiti"></div>
-    </div>
-  </div> -->
 
   <div class="wakeru">
-    <div>収支計算機(貯メダル用)</div>
+    <div>収支計算機(貯メダル用) <span class="setumei">未完成</span></div>
     開始
     <input type="number" id="tyomedaru" class="senseki" placeholder="0" min="0"> から
     <input type="number" id="owari" class="senseki" placeholder="0" min="0"> 枚

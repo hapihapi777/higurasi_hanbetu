@@ -4,6 +4,7 @@
 @media screen and (min-width: 415px) {
   body {
     font-family: Hiragino Maru Gothic Pro W4, Verdana, sans-serif;
+    width: 400px;
     font-size: 20px;
     touch-action: manipulation;
   }
@@ -26,7 +27,8 @@
   
   button {
     font-family: Hiragino Maru Gothic Pro W4, Verdana, sans-serif;
-    /* font-size: 16px; */
+    font-size: 16px;
+    border-radius: 8px;
     /* -webkit-touch-callout: none;
     user-select: none; */
     /* outline: none; */
@@ -38,7 +40,6 @@
   }
   
   .wakeru {
-    width: 400px;
     margin: 8px;
     border: 2px dotted #ccc;
     border-radius: 6px;
@@ -66,7 +67,7 @@
     border-color:  rgb(25, 167, 250);
     background-color: rgb(25, 167, 250);
   }
-
+  
   .mainasu {
     text-align: left;
     margin: 0px 2px 0px 0px;
@@ -75,8 +76,8 @@
     background-color: rgb(25, 167, 250); */
   }
   
-  
   #result {
+    /* height: 20px; */
     user-select: none;
     margin: 4px;
     padding: 6px;
@@ -85,25 +86,8 @@
     background-color: #ccc;
   }
   
-  #result_g {
-    font-size: 16px;
-    color: blue;
-    margin-left: 4px;
-  }
-  
-  #result_b {
-    font-size: 16px;
-    color: blue;
-    margin-left: 4px;
-  }
-  
-  #result_g_h {
-    font-size: 16px;
-    color: blue;
-    margin-left: 4px;
-  }
-  
-  #result_h_h {
+  .result_display {
+    height: 20px;
     font-size: 16px;
     color: blue;
     margin-left: 4px;
@@ -133,7 +117,7 @@
   }
   
   .nowrap {
-    /* display: inline; */
+    /* display: flex; */
     color: gray;
     font-size: 16px;
   }
@@ -142,10 +126,6 @@
     color: deeppink;
   }
   
-  .kitaiti {
-    color: deeppink;
-    margin-left: 8px;
-  }
   
   .noselect {
     user-select: none; /* CSS3 */
@@ -154,24 +134,7 @@
     -ms-user-select: none; /* IE10かららしい */
   }
   
-  .item1 {
-    width: 95%;
-  }
-  
-  .item4 {
-    display: inline;
-    text-align: left;
-    width: 22%;
-    margin: 0px 4px 0px 0px;
-  }
-  .item2 {
-    display: inline;
-    text-align: left;
-    width: 45%;
-    padding: 2px;
-  }
   .flexcontainer {
-    width: 400px;
     margin: 4px;
     border: 2px dotted #ccc;
     border-radius: 6px;
@@ -180,12 +143,45 @@
     flex-wrap: wrap;
   }
   
+  .item1 {
+    width: 95%;
+    margin: 0px 4px 0px 4px;
+  }
+  
+  .item4 {
+    display: inline;
+    text-align: left;
+    width: 22%;
+    margin: 0px 4px 0px 2px;
+  }
+  .item2 {
+    display: inline;
+    text-align: left;
+    width: 45%;
+    padding: 2px;
+    margin: 0px 4px 0px 2px;
+  }
+  
   .count {
     color: gray;
   }
   
+  .kitaiti {
+    color: deeppink;
+    margin-left: 8px;
+  }
+
   .radio {
     font-size: 5px;
+  }
+
+  .setumei {
+    font-size: 14px;
+    color: crimson;
+  }
+  
+  .big_g {
+    background-color: darkorange;
   }
   }
      
@@ -214,7 +210,8 @@
   
   button {
     font-family: Hiragino Maru Gothic Pro W4, Verdana, sans-serif;
-    /* font-size: 16px; */
+    font-size: 16px;
+    border-radius: 8px;
     /* -webkit-touch-callout: none;
     user-select: none; */
     /* outline: none; */
@@ -242,7 +239,7 @@
   
   .hazure {
     text-align: left;
-    border-radius: 6px;
+    border-radius: 8px;
     background-color: #ccc;
   }
   
@@ -258,11 +255,12 @@
     text-align: left;
     margin: 0px 2px 0px 0px;
     border-radius: 8px;
-    /* border-color:  rgb(25, 167, 250);
-    background-color: rgb(25, 167, 250); */
+    background-color: #efefef;
+    /* border-color:  rgb(25, 167, 250);  */
   }
   
   #result {
+    /* height: 20px; */
     user-select: none;
     margin: 4px;
     padding: 6px;
@@ -271,25 +269,8 @@
     background-color: #ccc;
   }
   
-  #result_g {
-    font-size: 16px;
-    color: blue;
-    margin-left: 4px;
-  }
-  
-  #result_b {
-    font-size: 16px;
-    color: blue;
-    margin-left: 4px;
-  }
-  
-  #result_g_h {
-    font-size: 16px;
-    color: blue;
-    margin-left: 4px;
-  }
-  
-  #result_h_h {
+  .result_display {
+    height: 20px;
     font-size: 16px;
     color: blue;
     margin-left: 4px;
@@ -319,7 +300,7 @@
   }
   
   .nowrap {
-    /* display: inline; */
+    /* display: flex; */
     color: gray;
     font-size: 16px;
   }
@@ -328,10 +309,6 @@
     color: deeppink;
   }
   
-  .kitaiti {
-    color: deeppink;
-    margin-left: 8px;
-  }
   
   .noselect {
     user-select: none; /* CSS3 */
@@ -340,22 +317,6 @@
     -ms-user-select: none; /* IE10かららしい */
   }
   
-  .item1 {
-    width: 95%;
-  }
-  
-  .item4 {
-    display: inline;
-    text-align: left;
-    width: 22%;
-    margin: 0px 4px 0px 0px;
-  }
-  .item2 {
-    display: inline;
-    text-align: left;
-    width: 45%;
-    padding: 2px;
-  }
   .flexcontainer {
     margin: 4px;
     border: 2px dotted #ccc;
@@ -365,11 +326,48 @@
     flex-wrap: wrap;
   }
   
+  .item1 {
+    width: 95%;
+    margin: 0px 4px 0px 4px;
+  }
+  
+  .item4 {
+    display: inline;
+    text-align: left;
+    width: 22%;
+    margin: 0px 4px 0px 2px;
+  }
+  .item2 {
+    display: inline;
+    text-align: left;
+    width: 46%;
+    padding: 2px;
+    margin: 0px 4px 0px 2px;
+  }
+  
   .count {
     color: gray;
   }
   
+  .kitaiti {
+    color: deeppink;
+    margin-left: 8px;
+  }
+
   .radio {
     font-size: 5px;
+  }
+
+  .setumei {
+    font-size: 14px;
+    color: crimson;
+  }
+
+  .big_g {
+    background-color: hotpink;
+  }  
+
+  .big_mainasu {
+
   }
 }
