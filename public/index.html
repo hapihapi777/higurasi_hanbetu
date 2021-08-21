@@ -12,8 +12,21 @@
 </head>
 
 <body>
-  <div class="flexcontainer noselect">
-    <div class="item1">カケラ紡ぎ(回想)</div>
+  <div id="chapter1" class="chapter">ロゴ比率(開く)</div>
+  <div id="palette1" class="flexcontainer noselect nodisp">
+    <h6 class="item1">連続演出終了後のロゴのみカウント</h6>
+    <div class="item2">
+      <button id="btn_logo_s" class="hazure noselect">弱発光</button>
+      <input type="number" id="logo_s" class="suuzi" value="0" min="0">
+    </div>
+    <div class="item2">
+      <button id="btn_logo_l" class="hazure noselect">強発光</button>
+      <input type="number" id="logo_l" class="suuzi" value="0" min="0">
+    </div>
+
+  </div>
+  <div id="chapter2" class="chapter">カケラ紡ぎ&回想(開く)</div>
+  <div id="palette2" class="flexcontainer noselect nodisp">
     <h6 class="item1">カケラ回想or有利区間終了時に合計してリセット</h6>
     <!-- カケラ紡ぎG数ボタン -->
     <div class="item2">
@@ -33,10 +46,11 @@
       <!-- 共通ベル入力欄 -->
       <input type="number" id="kakera_bell" class="suuzi" value="0" min="0">
     </div>
-
-    <!-- カケラ中のベルボタン -->
   </div>
-  <div class="flexcontainer noselect">
+
+  <!-- カケラ中のベルボタン -->
+  <div id="chapter3" class="chapter">RT中(開く)</div>
+  <div id="palette3" class="flexcontainer noselect nodisp">
     <div class="item4">RT</div>
     <div class="item4 count" id="count_50">0回</div>
     <div class="item4 count" id="count_90">0回</div>
@@ -66,8 +80,8 @@
     </div>
   </div>
 
-
-  <div class="flexcontainer">
+  <div id="chapter4" class="chapter">Big中(開く)</div>
+  <div id="palette4" class="flexcontainer noselect nodisp">
     <div class="item1">オヤシロ: <span id="oyasiro_count" class="count">0回</span><span id="" class="setumei"> ※斜めベル/回数*29G</span></div>
     
     <div class="item2">
@@ -104,7 +118,8 @@
 
   </div>
 
-  <div class="flexcontainer">
+  <div id="chapter5" class="chapter">設定判別(開く)</div>
+  <div id="palette5" class="flexcontainer noselect nodisp">
 
     <form id="target">
       <div class="item1 noselect">
@@ -139,10 +154,10 @@
 
     <div class="nowrap item1">外れ/ひぐらしG数(実数値):<span id="" class="result_display"></span></div>
     <div class="nowrap item1">ひぐらし中外れ確率:<span id="" class="result_display"></span></div> -->
-  </div>
+  <!-- </div> -->
 
 
-  <div class="flexcontainer">期待値
+  <!-- <div class="flexcontainer">期待値 -->
     <div class="gray item1">設定1:<div id="r_1" class="kitaiti"></div>
     </div>
     <div class="gray item1">設定2:<div id="r_2" class="kitaiti"></div>
@@ -158,17 +173,44 @@
   </div>
 
 
-  <div class="wakeru">
-    <div>収支計算機(貯メダル用) <span class="setumei">未完成</span></div>
-    開始
-    <input type="number" id="tyomedaru" class="senseki" placeholder="0" min="0"> から
-    <input type="number" id="owari" class="senseki" placeholder="0" min="0"> 枚
-    <div id="syuusi"></div>
-    <button id="kekka" class="noselect">結果</button>
-    <div>投資
-      <input type="number" id="" class="senseki" placeholder="0" min="0"> 千円
-      <input type="number" id="" class="senseki" placeholder="0" min="0"> 枚
+  <div id="palette6" class="flexcontainer nodisp">
+    <div class="item1">収支計算機(貯メダル用) <span class="setumei">未完成</span></div>
+    <form id="target2">
+      <!-- <div class="item1 noselect">
+        <label class="nowrap"><input type="radio" id="kankin1" name="kankinritu" value="0" checked>46枚等価</label>
+      </div> -->
+      <div class="item4 noselect">
+        <label class="nowrap"><input type="radio" id="kankin2" name="kankinritu" value="1">46枚等価</label>
+      </div>
+      <div class="item4 noselect">
+        <label class="nowrap"><input type="radio" id="kankin3" name="kankinritu" value="2">47枚等価</label>
+      </div>
+      <br>
+      <div class="item4 noselect">
+        <label class="nowrap"><input type="radio" id="kankin4" name="kankinritu" value="3">50枚等価</label>
+      </div>
+      <div class="item4 noselect">
+        <label class="nowrap"><input type="radio" id="kankin5" name="kankinritu" value="4">今津</label>
+      </div>
+
+    </form>
+
+    <div class="item1">
+      <button id="kekka" class="noselect">結果</button>
     </div>
+    <div class="item1">
+      開始
+      <input type="number" id="tyomedaru" class="senseki" placeholder="0" min="0" > から
+      <input type="number" id="owari" class="senseki" placeholder="0" min="0"> 枚
+
+    </div>
+    <div id="syuusi" class="item1">
+      投資
+        <input type="number" id="" class="senseki" placeholder="0" min="0"> 千円
+        <input type="number" id="" class="senseki" placeholder="0" min="0"> 枚
+
+    </div>
+    
   </div>
 
   <script src="js/main.js"></script>

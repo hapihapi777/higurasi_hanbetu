@@ -3,6 +3,8 @@
   let accuracy = 100000000000000;
   let dankai = 6; //6段階設定
 
+  
+  // chapter1.addEventListener('click', OpenCloseButton);
   Button_General();
 
 
@@ -67,6 +69,25 @@
 
   // 判別用関数
   function Hanbetu() {
+    // [14](タイトルロゴ発光割合)弱発光
+    // (S1)1/3.428 (29.170%)
+    // (S2)1/4.000 (25.000%)
+    // (S3)1/3.200 (31.250%)
+    // (S4)1/4.000 (25.000%)
+    // (S5)1/3.000 (33.333%)
+    // (S6)1/4.000 (25.000%)
+
+    let logo_s_kakuritu = [3.428, 4.000, 3.200, 4.000, 3.000, 4.000]; //ロゴS確率
+    
+    // [15](タイトルロゴ発光割合)強発光
+    // (S1)1/1.412 (70.830%)
+    // (S2)1/1.333 (75.000%)
+    // (S3)1/1.455 (68.750%)
+    // (S4)1/1.333 (75.000%)
+    // (S5)1/1.500 (66.667%)
+    // (S6)1/1.333 (75.000%)
+    let logo_l_kakuritu = [1.412, 1.333, 1.455, 1.333, 1.500, 1.333]; //ロゴL確率
+
     let bell_kakuritu = [18.700, 17.880, 17.040, 15.860, 15.090, 14.830]; //共通ベル確率
     let hazure_kakuritu = [69.350, 66.065, 64.695, 61.077, 58.882, 57.996]; //ART中ハズレ確率
 
@@ -92,6 +113,8 @@
     let num = GetRadio();
     if (num > 0) {
       for (let i = 0; i < num; i++) {
+        logo_s_kakuritu[i] = 1;
+        logo_l_kakuritu[i] = 1;
         bell_kakuritu[i] = 1;
         hazure_kakuritu[i] = 1;
         oyasirotyuu_rarebell[i] = 1;
@@ -101,20 +124,48 @@
     console.log(num);
 
     // 入力欄
+    let logo_s = parseInt(document.getElementById("logo_s").value);
+    let logo_l = parseInt(document.getElementById("logo_l").value);
+
+    // console.log("logo_s:" + logo_s);
+    // console.log("logo_l:" + logo_l);
+    
     let kakera_g = parseInt(document.getElementById("kakera_g").value);
     let kakera_all = parseInt(document.getElementById("kakera_all").value);
     let kakera_bell = parseInt(document.getElementById("kakera_bell").value);
     let rt_g = parseInt(document.getElementById("rt_g").value);
     let rt_bell = parseInt(document.getElementById("rt_bell").value);
     let rt_hazure = parseInt(document.getElementById("rt_hazure").value);
-
+    
     let oyasiro_g = parseInt(document.getElementById("oyasiro_g").value);
     let rare_bell = parseInt(document.getElementById("rare_bell").value);
-
+    
     let higurasi_g = parseInt(document.getElementById("higurasi_g").value);
     let higurasi_hazure_count = parseInt(document.getElementById("higurasi_hazure_count").value);
-
+    
     // 入力欄の合計値
+    let logo_goukei = logo_s + logo_l;
+
+    let logo_s_kitaiti = GetHiritu(logo_s, logo_goukei, logo_s_kakuritu);
+    let logo_l_kitaiti = GetHiritu(logo_l, logo_goukei, logo_l_kakuritu);
+    let logo_kitaiti = [];
+    if(logo_s <= 0 && 0 < logo_l) {
+      for (let i = 0; i < dankai; i++) {
+        logo_kitaiti.push(Math.round(logo_l_kitaiti[i] * 100) / 100);
+      }
+    }else if(logo_l <= 0 && 0 < logo_s) {
+      for (let i = 0; i < dankai; i++) {
+        logo_kitaiti.push(Math.round(logo_s_kitaiti[i] * 100) / 100);
+      }
+    }else{
+      for (let i = 0; i < dankai; i++) {
+        logo_kitaiti.push(Math.round((((logo_s_kitaiti[i] + logo_l_kitaiti[i]) / 2)) * 100) / 100);
+      }
+    }
+    console.log(logo_kitaiti);
+    console.log("logo_s_kitaiti:" + logo_s_kitaiti);
+    console.log("logo_l_kitaiti:" + logo_l_kitaiti);
+
     let rt_goukei = kakera_g + kakera_all + rt_g;
     let bell_goukei = kakera_bell + rt_bell;
 
@@ -154,7 +205,7 @@
       }
     }else{
       for (let i = 0; i < dankai; i++) {
-        goukei_hiritu.push(Math.round(((bell_kitaiti[i] * hazure_kitaiti[i])) * 100) / 100);
+        goukei_hiritu.push(Math.round(((bell_kitaiti[i] * hazure_kitaiti[i] * logo_kitaiti[i])) * 100) / 100);
         goukei += goukei_hiritu[i];
       }
     }
@@ -171,6 +222,9 @@
 
     let setteiti = GetKoyakuKakuritu(array);
 
+    let hiritu = [];
+
+    if (0 < bunsi && 0 < bunbo) {
     let n = BigInt(bunbo);
     let x = BigInt(bunsi);
     let goukei = 0n;
@@ -184,11 +238,14 @@
       goukei += kakuritu[i]
     }
 
-    let hiritu = [];
-
     for (let i = 0; i < dankai; i++) {
       hiritu.push(Math.round((parseFloat((kakuritu[i] / (goukei / BigInt(accuracy)) * 100n)) / accuracy) * 100) / 100);
     }
+  }else{
+    for (let i = 0; i < dankai; i++) {
+      hiritu.push(1);
+    }
+  }
 
     return hiritu;
   }
@@ -217,6 +274,8 @@
   }
 
   function Button_General() {
+    Button_Keisan('btn_logo_s', 'logo_s', 1);
+    Button_Keisan('btn_logo_l', 'logo_l', 1);
 
     Button_Keisan('btn_kakera_g1', 'kakera_g', 1);
     Button_Keisan('btn_kakera_b1', 'kakera_bell', 1);
@@ -243,6 +302,16 @@
 
     document.getElementById('kekka').addEventListener('click', Syuusi);
     // 結果ボタン
+
+
+    OpenCloseButton("chapter1", "palette1", "ロゴ比率");
+    OpenCloseButton("chapter2", "palette2", "カケラ紡ぎ&回想");
+    OpenCloseButton("chapter3", "palette3", "RT中");
+    OpenCloseButton("chapter4", "palette4", "BIG中");
+    OpenCloseButton("chapter5", "palette5", "設定判別");
+
+
+
   }
 
 
@@ -303,6 +372,21 @@
       // console.log(n);
       return n;
     });
+  }
+
+  function OpenCloseButton(chap, pale, str) {
+    const chapter = document.getElementById(chap);
+    const palette = document.getElementById(pale);
+    chapter.addEventListener('click', function () {
+      if (!palette.classList.contains("nodisp")) {
+        palette.classList.add('nodisp');
+        chapter.textContent = str + "(開く)";
+      }else{
+        palette.classList.remove('nodisp');
+        chapter.textContent = str + "(閉じる)";
+      }
+    });
+    
   }
 
 
