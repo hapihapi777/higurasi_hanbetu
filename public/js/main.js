@@ -184,31 +184,31 @@
     
     let result = [];
     
-    if (oyasiro_g > 0 && higurasi_g > 0) {
+    // if (oyasiro_g > 0 && higurasi_g > 0) {
       for (let i = 0; i < dankai; i++) {
         let oyasiro_kitaiti = GetHiritu(rare_bell, oyasiro_g, oyasirotyuu_rarebell);
         let higurasi_kitaiti = GetHiritu(higurasi_hazure_count, higurasi_g, higurasi_hazure);
-        goukei_hiritu.push(Math.round(((bell_kitaiti[i] * hazure_kitaiti[i] * oyasiro_kitaiti[i] * higurasi_kitaiti[i])) * 100) / 100);
+        goukei_hiritu.push(Math.round(((bell_kitaiti[i] * hazure_kitaiti[i] * oyasiro_kitaiti[i] * higurasi_kitaiti[i]) * logo_kitaiti[i]) * 100) / 100);
         goukei += goukei_hiritu[i];
       }
-    }else if (oyasiro_g > 0 && higurasi_g <= 0) {
-      for (let i = 0; i < dankai; i++) {
-        let oyasiro_kitaiti = GetHiritu(rare_bell, oyasiro_g, oyasirotyuu_rarebell);
-        goukei_hiritu.push(Math.round(((bell_kitaiti[i] * hazure_kitaiti[i] * oyasiro_kitaiti[i] )) * 100) / 100);
-        goukei += goukei_hiritu[i];
-      }
-    }else if (higurasi_g > 0 && oyasiro_g <= 0) {
-      let higurasi_kitaiti = GetHiritu(higurasi_hazure_count, higurasi_g, higurasi_hazure);
-      for (let i = 0; i < dankai; i++) {
-        goukei_hiritu.push(Math.round(((bell_kitaiti[i] * hazure_kitaiti[i] * higurasi_kitaiti[i] )) * 100) / 100);
-        goukei += goukei_hiritu[i];
-      }
-    }else{
-      for (let i = 0; i < dankai; i++) {
-        goukei_hiritu.push(Math.round(((bell_kitaiti[i] * hazure_kitaiti[i] * logo_kitaiti[i])) * 100) / 100);
-        goukei += goukei_hiritu[i];
-      }
-    }
+    // }else if (oyasiro_g > 0 && higurasi_g <= 0) {
+    //   for (let i = 0; i < dankai; i++) {
+    //     let oyasiro_kitaiti = GetHiritu(rare_bell, oyasiro_g, oyasirotyuu_rarebell);
+    //     goukei_hiritu.push(Math.round(((bell_kitaiti[i] * hazure_kitaiti[i] * oyasiro_kitaiti[i] )) * 100) / 100);
+    //     goukei += goukei_hiritu[i];
+    //   }
+    // }else if (higurasi_g > 0 && oyasiro_g <= 0) {
+    //   let higurasi_kitaiti = GetHiritu(higurasi_hazure_count, higurasi_g, higurasi_hazure);
+    //   for (let i = 0; i < dankai; i++) {
+    //     goukei_hiritu.push(Math.round(((bell_kitaiti[i] * hazure_kitaiti[i] * higurasi_kitaiti[i] )) * 100) / 100);
+    //     goukei += goukei_hiritu[i];
+    //   }
+    // }else{
+    //   for (let i = 0; i < dankai; i++) {
+    //     goukei_hiritu.push(Math.round(((bell_kitaiti[i] * hazure_kitaiti[i] * logo_kitaiti[i])) * 100) / 100);
+    //     goukei += goukei_hiritu[i];
+    //   }
+    // }
     
     for (let i = 0; i < dankai; i++) {
       result.push(Math.floor((goukei_hiritu[i] / goukei) * 10000) / 100);
